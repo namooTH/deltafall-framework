@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8nmdpy7eggn8"]
+
+[ext_resource type="Script" path="res://Game/UI/battleDialogueBox/battle_dialogue_box.gd" id="1_tqt6r"]
+[ext_resource type="Texture2D" uid="uid://c0vmucpm3q78i" path="res://Art/UI_art/Rects/rect_shadowed.png" id="1_uuepk"]
+[ext_resource type="FontFile" uid="uid://dlfluwaxcqufj" path="res://Art/fonts/8bitoperator-tfx.ttf" id="3_rt050"]
+
+[node name="BattleDialogueBox" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tqt6r")
+
+[node name="box" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -224.0
+offset_top = 21.0
+offset_right = 224.0
+offset_bottom = 42.0
+grow_horizontal = 2
+texture = ExtResource("1_uuepk")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="bg" type="ColorRect" parent="box"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="label" type="RichTextLabel" parent="box"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 11.0
+offset_top = 11.0
+offset_right = -11.0
+offset_bottom = 11.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("3_rt050")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+fit_content = true
+scroll_active = false

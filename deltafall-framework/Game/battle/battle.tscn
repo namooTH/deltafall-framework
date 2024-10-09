@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu6mwcykce8ij"]
+
+[ext_resource type="Script" path="res://Game/battle/battle.gd" id="1_14asl"]
+[ext_resource type="PackedScene" uid="uid://b8nmdpy7eggn8" path="res://Game/UI/battleDialogueBox/battleDialogueBox.tscn" id="1_uq66n"]
+[ext_resource type="PackedScene" uid="uid://dort1uu5fbj6y" path="res://Game/UI/battleBackgrounds/battleBg1.tscn" id="2_7srv7"]
+[ext_resource type="PackedScene" uid="uid://kslunrbdo56a" path="res://Game/UI/battleTP/battleTP.tscn" id="4_mwx24"]
+
+[node name="battle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_14asl")
+
+[node name="BattleBg1" parent="." instance=ExtResource("2_7srv7")]
+layout_mode = 1
+
+[node name="BattleDialogueBox" parent="." instance=ExtResource("1_uq66n")]
+layout_mode = 1
+text = "Walter Hartwell \"Walt\" White Sr., also known by his pseudonym Heisenberg and also frequently referred to as Mr. White, is an American chemist, school teacher, and major narcotics distributor from Albuquerque, New Mexico, whose drug empire became the largest meth operation in U.S. history, surpassing those of both Gustavo Fring and the Cartel. Before entering the drug trade, Walt worked as an overqualified high school chemistry teacher at J. P. Wynne High School, working a second job at the A1A Car Wash to financially support his family (his wife Skyler, son Walt Jr. and infant daughter Holly). After being diagnosed with terminal lung cancer, Walt started manufacturing chemically pure methamphetamine to provide for his family upon his death. Knowing nothing about the drug trade, Walt enlisted the aid of his former student, Jesse Pinkman, to sell the meth he produced. "
+
+[node name="BattleTp" parent="." instance=ExtResource("4_mwx24")]
+layout_mode = 1

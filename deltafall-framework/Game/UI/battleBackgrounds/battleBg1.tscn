@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3 uid="uid://dort1uu5fbj6y"]
+
+[ext_resource type="Shader" path="res://Shaders/scroll.gdshader" id="1_fvd71"]
+[ext_resource type="Texture2D" uid="uid://dhvmbk5y0cq1k" path="res://Art/UI_art/Rects/grid_full.png" id="2_ky7au"]
+
+[sub_resource type="Shader" id="Shader_c3kex"]
+code = "shader_type canvas_item;
+
+uniform vec2 motion = vec2(0.0);
+uniform float scale = 1.0;
+uniform vec2 offset = vec2(0.0);
+
+void vertex(){
+	UV = (VERTEX + offset + TIME * motion) * TEXTURE_PIXEL_SIZE * (1.0/scale);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_06w7n"]
+shader = SubResource("Shader_c3kex")
+shader_parameter/motion = Vector2(-16, 16)
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_valqi"]
+shader = ExtResource("1_fvd71")
+shader_parameter/motion = Vector2(16, -16)
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ltc6"]
+shader = SubResource("Shader_c3kex")
+shader_parameter/motion = Vector2(-16, -16)
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wfnwt"]
+shader = SubResource("Shader_c3kex")
+shader_parameter/motion = Vector2(16, 16)
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[node name="BattleBg1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="checkerboardBOTTOM" type="TextureRect" parent="."]
+modulate = Color(0.0627451, 0.0745098, 0.0980392, 0.333333)
+material = SubResource("ShaderMaterial_06w7n")
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -47.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_ky7au")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="checkerboardUP" type="TextureRect" parent="."]
+modulate = Color(0.0627451, 0.0745098, 0.0980392, 0.333333)
+material = SubResource("ShaderMaterial_valqi")
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 47.0
+grow_horizontal = 2
+texture = ExtResource("2_ky7au")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="checkerboardLEFT" type="TextureRect" parent="."]
+modulate = Color(0.0627451, 0.0745098, 0.0980392, 0.333333)
+material = SubResource("ShaderMaterial_4ltc6")
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 47.0
+grow_vertical = 2
+texture = ExtResource("2_ky7au")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="checkerboardRIGHT" type="TextureRect" parent="."]
+modulate = Color(0.0627451, 0.0745098, 0.0980392, 0.333333)
+material = SubResource("ShaderMaterial_wfnwt")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -47.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("2_ky7au")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="checkerboardBG" type="TextureRect" parent="."]
+modulate = Color(0.0627451, 0.0745098, 0.0980392, 0.0862745)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ky7au")
+expand_mode = 1
+stretch_mode = 1

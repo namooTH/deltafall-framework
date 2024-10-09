@@ -1,22 +1,19 @@
 extends Control
 
 @onready var label = $box/label
-
-var text: String = "":
+@export var text: String = "":
 	set(value):
-		resetTextState()
 		text = value
-		label.text = value
-
-
+		call_deferred("resetTextState")
+		
 var finished_text_on_turn = false
+var allowedToShow:bool=false
 
-func _ready():
-	text = "meowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeowmeow"
-	
-var allowedToShow: bool = true
+func battleStarted():
+	await get_tree().create_timer(1).timeout
+	allowedToShow=true
+
 func _physics_process(delta:float)->void :
-	
 	#if gamesystem.battle_data.battle_start: # this should've been a signal
 	#	active_delay -= delta
 	
@@ -57,7 +54,7 @@ func _physics_process(delta:float)->void :
 		if label.visible_characters < text.length():
 			if not finished_text_on_turn:
 				pass
-				#$AudioStreamPlayer.play()
+			$sfx.play()
 			# idk why he did this
 			# gamesystem.battle_data.flavor_text_finished = false
 		else :
@@ -105,3 +102,4 @@ func showAllChar():
 
 func resetTextState():
 	label.visible_characters = 0
+	label.text = text

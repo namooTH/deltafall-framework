@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://m8186tpobhas"]
+
+[ext_resource type="Script" path="res://Game/UI/battleSelect/battle_select.gd" id="1_sqles"]
+
+[node name="BattleSelect" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sqles")
+
+[node name="bar" type="ColorRect" parent="."]
+layout_mode = 1
+offset_right = 511.0
+offset_bottom = 164.0
+rotation = 0.785398
+color = Color(1, 1, 1, 0.0588235)
+
+[node name="barAnchor" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.498
+anchor_top = 1.0
+anchor_right = 0.498
+anchor_bottom = 1.0
+offset_left = 0.279968
+offset_right = 0.279968
+
+[connection signal="resized" from="." to="." method="_on_resized"]

@@ -23,7 +23,16 @@ layout_mode = 1
 
 [node name="BattleDialogueBox" parent="." instance=ExtResource("1_uq66n")]
 layout_mode = 1
-text = "Walter Hartwell \"Walt\" White Sr., also known by his pseudonym Heisenberg and also frequently referred to as Mr. White, is an American chemist, school teacher, and major narcotics distributor from Albuquerque, New Mexico, whose drug empire became the largest meth operation in U.S. history, surpassing those of both Gustavo Fring and the Cartel. Before entering the drug trade, Walt worked as an overqualified high school chemistry teacher at J. P. Wynne High School, working a second job at the A1A Car Wash to financially support his family (his wife Skyler, son Walt Jr. and infant daughter Holly). After being diagnosed with terminal lung cancer, Walt started manufacturing chemically pure methamphetamine to provide for his family upon his death. Knowing nothing about the drug trade, Walt enlisted the aid of his former student, Jesse Pinkman, to sell the meth he produced. "
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.058
+anchor_right = 0.85
+anchor_bottom = 0.058
+offset_left = 0.0
+offset_top = 0.119999
+offset_right = 0.0
+offset_bottom = 21.12
+text = "this sucks"
 
 [node name="BattleTp" parent="." instance=ExtResource("4_mwx24")]
 layout_mode = 1

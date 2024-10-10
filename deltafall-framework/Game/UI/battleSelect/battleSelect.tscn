@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://m8186tpobhas"]
+[gd_scene load_steps=4 format=3 uid="uid://m8186tpobhas"]
 
 [ext_resource type="Script" path="res://Game/UI/battleSelect/battle_select.gd" id="1_sqles"]
+[ext_resource type="Script" path="res://Game/UI/battleSelect/button_plate.gd" id="2_fmqut"]
+[ext_resource type="PackedScene" uid="uid://wj4b1fhrjt8m" path="res://UI/scrolling/scroller.tscn" id="3_hw3og"]
 
 [node name="BattleSelect" type="Control"]
 clip_contents = true
@@ -12,12 +14,310 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sqles")
 
-[node name="bar" type="ColorRect" parent="."]
+[node name="mainBar" type="ColorRect" parent="."]
 layout_mode = 1
 offset_right = 511.0
 offset_bottom = 164.0
 rotation = 0.785398
 color = Color(1, 1, 1, 0.0588235)
+
+[node name="buttonPlate" type="ColorRect" parent="mainBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.396
+offset_top = 9.89949
+offset_bottom = -0.0445099
+color = Color(0, 1, 1, 0.156863)
+script = ExtResource("2_fmqut")
+
+[node name="Scroller" parent="mainBar/buttonPlate" instance=ExtResource("3_hw3og")]
+clip_contents = false
+layout_mode = 1
+offset_left = 161.586
+offset_top = -9.99998
+offset_right = -163.414
+offset_bottom = -9.99999
+padding = Vector2(5, 10)
+scrollable = true
+mode = "x"
+preventControlRotatedClipBug = false
+isCentered = true
+
+[node name="aButton" type="Control" parent="mainBar/buttonPlate/Scroller"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="bg" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 1.0
+offset_right = 40.0
+offset_bottom = 42.0
+color = Color(0, 0, 0, 1)
+
+[node name="borders" type="Control" parent="mainBar/buttonPlate/Scroller/aButton"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="left" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton/borders"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 3.0
+grow_vertical = 2
+
+[node name="righjt" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton/borders"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="up" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton/borders"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+
+[node name="bottom" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton/borders"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="aButton2" type="Control" parent="mainBar/buttonPlate/Scroller"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="bg" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton2"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 1.0
+offset_right = 40.0
+offset_bottom = 42.0
+color = Color(0, 0, 0, 1)
+
+[node name="borders" type="Control" parent="mainBar/buttonPlate/Scroller/aButton2"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="left" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton2/borders"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 3.0
+grow_vertical = 2
+
+[node name="righjt" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton2/borders"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="up" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton2/borders"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+
+[node name="bottom" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton2/borders"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="aButton3" type="Control" parent="mainBar/buttonPlate/Scroller"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="bg" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton3"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 1.0
+offset_right = 40.0
+offset_bottom = 42.0
+color = Color(0, 0, 0, 1)
+
+[node name="borders" type="Control" parent="mainBar/buttonPlate/Scroller/aButton3"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="left" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton3/borders"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 3.0
+grow_vertical = 2
+
+[node name="righjt" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton3/borders"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="up" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton3/borders"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+
+[node name="bottom" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton3/borders"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="aButton4" type="Control" parent="mainBar/buttonPlate/Scroller"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="bg" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton4"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 1.0
+offset_right = 40.0
+offset_bottom = 42.0
+color = Color(0, 0, 0, 1)
+
+[node name="borders" type="Control" parent="mainBar/buttonPlate/Scroller/aButton4"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="left" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton4/borders"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 3.0
+grow_vertical = 2
+
+[node name="righjt" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton4/borders"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="up" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton4/borders"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+
+[node name="bottom" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton4/borders"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="aButton5" type="Control" parent="mainBar/buttonPlate/Scroller"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="bg" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton5"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 1.0
+offset_right = 40.0
+offset_bottom = 42.0
+color = Color(0, 0, 0, 1)
+
+[node name="borders" type="Control" parent="mainBar/buttonPlate/Scroller/aButton5"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="left" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton5/borders"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 3.0
+grow_vertical = 2
+
+[node name="righjt" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton5/borders"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="up" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton5/borders"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+
+[node name="bottom" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton5/borders"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="bar3" type="ColorRect" parent="mainBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.301
+anchor_top = 0.307
+anchor_right = 0.699
+anchor_bottom = 0.331
+offset_left = 0.18898
+offset_top = -0.046505
+offset_right = -0.189026
+offset_bottom = 0.0175018
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 1, 0.388235)
 
 [node name="barAnchor" type="Control" parent="."]
 layout_mode = 1
@@ -29,3 +329,4 @@ offset_left = 0.279968
 offset_right = 0.279968
 
 [connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="child_entered_tree" from="mainBar/buttonPlate" to="mainBar/buttonPlate" method="_on_child_entered_tree"]

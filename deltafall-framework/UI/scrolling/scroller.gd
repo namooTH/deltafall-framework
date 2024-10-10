@@ -129,10 +129,6 @@ func _input(event):
 			pressedPos = null
 			
 		smoothVelocity.y += (-event.get_action_strength("scroll_down") + event.get_action_strength("scroll_up")) * 2.0
-	if event.is_action_pressed("arrow_down"):
-		scrollDOWN(1)
-	if event.is_action_pressed("arrow_up"):
-		scrollUP(1)
 	
 func checkNode(node):
 	if node in cachedDownNodes or node in cachedUpperNodes or node in displayedNodes:

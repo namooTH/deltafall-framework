@@ -1,8 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://m8186tpobhas"]
+[gd_scene load_steps=12 format=3 uid="uid://m8186tpobhas"]
 
 [ext_resource type="Script" path="res://Game/UI/battleSelect/battle_select.gd" id="1_sqles"]
 [ext_resource type="Script" path="res://Game/UI/battleSelect/button_plate.gd" id="2_fmqut"]
 [ext_resource type="PackedScene" uid="uid://wj4b1fhrjt8m" path="res://UI/scrolling/scroller.tscn" id="3_hw3og"]
+[ext_resource type="Texture2D" uid="uid://b7sv8v4viyeev" path="res://Art/UI_art/Icons/battle_icons.png" id="4_jd6u1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3h103"]
+atlas = ExtResource("4_jd6u1")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi5j4"]
+atlas = ExtResource("4_jd6u1")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld7ej"]
+atlas = ExtResource("4_jd6u1")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jo5sa"]
+atlas = ExtResource("4_jd6u1")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vr7q1"]
+atlas = ExtResource("4_jd6u1")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l33i4"]
+atlas = ExtResource("4_jd6u1")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_botb1"]
+atlas = ExtResource("4_jd6u1")
+region = Rect2(320, 0, 64, 64)
 
 [node name="BattleSelect" type="Control"]
 clip_contents = true
@@ -14,6 +43,55 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sqles")
 
+[node name="selector" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.67
+offset_top = -59.8126
+offset_right = -170.67
+offset_bottom = -18.8126
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="left" type="ColorRect" parent="selector"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 3.0
+grow_vertical = 2
+
+[node name="righjt" type="ColorRect" parent="selector"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="up" type="ColorRect" parent="selector"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+
+[node name="bottom" type="ColorRect" parent="selector"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+
 [node name="mainBar" type="ColorRect" parent="."]
 layout_mode = 1
 offset_right = 511.0
@@ -21,7 +99,7 @@ offset_bottom = 164.0
 rotation = 0.785398
 color = Color(1, 1, 1, 0.0588235)
 
-[node name="buttonPlate" type="ColorRect" parent="mainBar"]
+[node name="buttonsPlate" type="ColorRect" parent="mainBar"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -31,278 +109,369 @@ offset_bottom = -0.0445099
 color = Color(0, 1, 1, 0.156863)
 script = ExtResource("2_fmqut")
 
-[node name="Scroller" parent="mainBar/buttonPlate" instance=ExtResource("3_hw3og")]
+[node name="Scroller" parent="mainBar/buttonsPlate" instance=ExtResource("3_hw3og")]
 clip_contents = false
 layout_mode = 1
 offset_left = 161.586
 offset_top = -9.99998
 offset_right = -163.414
 offset_bottom = -9.99999
-padding = Vector2(5, 10)
-scrollable = true
+padding = Vector2(1, 10)
 mode = "x"
 preventControlRotatedClipBug = false
 isCentered = true
 
-[node name="aButton" type="Control" parent="mainBar/buttonPlate/Scroller"]
+[node name="attackButton" type="Control" parent="mainBar/buttonsPlate/Scroller"]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 0.00012207
+offset_top = 8.48528
+offset_right = 40.0001
+offset_bottom = 48.4853
 
-[node name="bg" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton"]
-layout_mode = 0
-offset_left = -2.0
-offset_top = 1.0
-offset_right = 40.0
-offset_bottom = 42.0
+[node name="bg" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/attackButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -17.5
+offset_right = 17.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="borders" type="Control" parent="mainBar/buttonPlate/Scroller/aButton"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="left" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton/borders"]
+[node name="shadow" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/attackButton"]
 layout_mode = 1
-anchors_preset = 9
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -16.0
+offset_right = 19.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.505882)
+
+[node name="iconShadow" type="TextureRect" parent="mainBar/buttonsPlate/Scroller/attackButton"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -30.5858
+offset_right = 32.0
+offset_bottom = 33.4142
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.785398
+pivot_offset = Vector2(32, 32)
+texture = SubResource("AtlasTexture_3h103")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/attackButton/iconShadow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 3.0
+offset_left = -2.00004
+offset_top = -2.00003
+offset_right = -2.00004
+offset_bottom = -2.00003
+grow_horizontal = 2
 grow_vertical = 2
 
-[node name="righjt" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton/borders"]
+[node name="icon" type="TextureRect" parent="mainBar/buttonsPlate/Scroller/attackButton"]
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -3.0
-grow_horizontal = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -30.5858
+offset_right = 32.0
+offset_bottom = 33.4142
+grow_horizontal = 2
 grow_vertical = 2
+rotation = -0.785398
+pivot_offset = Vector2(32, 32)
+texture = SubResource("AtlasTexture_3h103")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="up" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton/borders"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 3.0
-grow_horizontal = 2
-
-[node name="bottom" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton/borders"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -3.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="aButton2" type="Control" parent="mainBar/buttonPlate/Scroller"]
+[node name="actButton" type="Control" parent="mainBar/buttonsPlate/Scroller"]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 0.00012207
+offset_top = 8.48528
+offset_right = 40.0001
+offset_bottom = 48.4853
 
-[node name="bg" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton2"]
-layout_mode = 0
-offset_left = -2.0
-offset_top = 1.0
-offset_right = 40.0
-offset_bottom = 42.0
+[node name="bg" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/actButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -17.5
+offset_right = 17.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="borders" type="Control" parent="mainBar/buttonPlate/Scroller/aButton2"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="left" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton2/borders"]
+[node name="shadow" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/actButton"]
 layout_mode = 1
-anchors_preset = 9
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -16.0
+offset_right = 19.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.505882)
+
+[node name="iconShadow" type="TextureRect" parent="mainBar/buttonsPlate/Scroller/actButton"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -30.5858
+offset_right = 32.0
+offset_bottom = 33.4142
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.785398
+pivot_offset = Vector2(32, 32)
+texture = SubResource("AtlasTexture_hi5j4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/actButton/iconShadow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 3.0
+offset_left = -2.00004
+offset_top = -2.00003
+offset_right = -2.00004
+offset_bottom = -2.00003
+grow_horizontal = 2
 grow_vertical = 2
 
-[node name="righjt" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton2/borders"]
+[node name="icon" type="TextureRect" parent="mainBar/buttonsPlate/Scroller/actButton"]
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -3.0
-grow_horizontal = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -30.5858
+offset_right = 32.0
+offset_bottom = 33.4142
+grow_horizontal = 2
 grow_vertical = 2
+rotation = -0.785398
+pivot_offset = Vector2(32, 32)
+texture = SubResource("AtlasTexture_ld7ej")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="up" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton2/borders"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 3.0
-grow_horizontal = 2
-
-[node name="bottom" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton2/borders"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -3.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="aButton3" type="Control" parent="mainBar/buttonPlate/Scroller"]
+[node name="itemButton" type="Control" parent="mainBar/buttonsPlate/Scroller"]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 0.00012207
+offset_top = 8.48528
+offset_right = 40.0001
+offset_bottom = 48.4853
 
-[node name="bg" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton3"]
-layout_mode = 0
-offset_left = -2.0
-offset_top = 1.0
-offset_right = 40.0
-offset_bottom = 42.0
+[node name="bg" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/itemButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -17.5
+offset_right = 17.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="borders" type="Control" parent="mainBar/buttonPlate/Scroller/aButton3"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="left" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton3/borders"]
+[node name="shadow" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/itemButton"]
 layout_mode = 1
-anchors_preset = 9
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -16.0
+offset_right = 19.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.505882)
+
+[node name="iconShadow" type="TextureRect" parent="mainBar/buttonsPlate/Scroller/itemButton"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -30.5858
+offset_right = 32.0
+offset_bottom = 33.4142
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.785398
+pivot_offset = Vector2(32, 32)
+texture = SubResource("AtlasTexture_jo5sa")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/itemButton/iconShadow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 3.0
+offset_left = -2.00004
+offset_top = -2.00003
+offset_right = -2.00004
+offset_bottom = -2.00003
+grow_horizontal = 2
 grow_vertical = 2
 
-[node name="righjt" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton3/borders"]
+[node name="icon" type="TextureRect" parent="mainBar/buttonsPlate/Scroller/itemButton"]
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -3.0
-grow_horizontal = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -30.5858
+offset_right = 32.0
+offset_bottom = 33.4142
+grow_horizontal = 2
 grow_vertical = 2
+rotation = -0.785398
+pivot_offset = Vector2(32, 32)
+texture = SubResource("AtlasTexture_vr7q1")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="up" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton3/borders"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 3.0
-grow_horizontal = 2
-
-[node name="bottom" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton3/borders"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -3.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="aButton4" type="Control" parent="mainBar/buttonPlate/Scroller"]
+[node name="defendButton" type="Control" parent="mainBar/buttonsPlate/Scroller"]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 0.00012207
+offset_top = 8.48528
+offset_right = 40.0001
+offset_bottom = 48.4853
 
-[node name="bg" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton4"]
-layout_mode = 0
-offset_left = -2.0
-offset_top = 1.0
-offset_right = 40.0
-offset_bottom = 42.0
+[node name="bg" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/defendButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -17.5
+offset_right = 17.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="borders" type="Control" parent="mainBar/buttonPlate/Scroller/aButton4"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="left" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton4/borders"]
+[node name="shadow" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/defendButton"]
 layout_mode = 1
-anchors_preset = 9
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -16.0
+offset_right = 19.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.505882)
+
+[node name="iconShadow" type="TextureRect" parent="mainBar/buttonsPlate/Scroller/defendButton"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -30.5858
+offset_right = 32.0
+offset_bottom = 33.4142
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.785398
+pivot_offset = Vector2(32, 32)
+texture = SubResource("AtlasTexture_l33i4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/defendButton/iconShadow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 3.0
+offset_left = -2.00004
+offset_top = -2.00003
+offset_right = -2.00004
+offset_bottom = -2.00003
+grow_horizontal = 2
 grow_vertical = 2
 
-[node name="righjt" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton4/borders"]
+[node name="icon" type="TextureRect" parent="mainBar/buttonsPlate/Scroller/defendButton"]
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -3.0
-grow_horizontal = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -30.5858
+offset_right = 32.0
+offset_bottom = 33.4142
+grow_horizontal = 2
 grow_vertical = 2
-
-[node name="up" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton4/borders"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 3.0
-grow_horizontal = 2
-
-[node name="bottom" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton4/borders"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -3.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="aButton5" type="Control" parent="mainBar/buttonPlate/Scroller"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="bg" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton5"]
-layout_mode = 0
-offset_left = -2.0
-offset_top = 1.0
-offset_right = 40.0
-offset_bottom = 42.0
-color = Color(0, 0, 0, 1)
-
-[node name="borders" type="Control" parent="mainBar/buttonPlate/Scroller/aButton5"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="left" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton5/borders"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 3.0
-grow_vertical = 2
-
-[node name="righjt" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton5/borders"]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -3.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="up" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton5/borders"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 3.0
-grow_horizontal = 2
-
-[node name="bottom" type="ColorRect" parent="mainBar/buttonPlate/Scroller/aButton5/borders"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -3.0
-grow_horizontal = 2
-grow_vertical = 0
+rotation = -0.785398
+pivot_offset = Vector2(32, 32)
+texture = SubResource("AtlasTexture_botb1")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="bar3" type="ColorRect" parent="mainBar"]
 layout_mode = 1
@@ -329,4 +498,4 @@ offset_left = 0.279968
 offset_right = 0.279968
 
 [connection signal="resized" from="." to="." method="_on_resized"]
-[connection signal="child_entered_tree" from="mainBar/buttonPlate" to="mainBar/buttonPlate" method="_on_child_entered_tree"]
+[connection signal="child_entered_tree" from="mainBar/buttonsPlate" to="mainBar/buttonsPlate" method="_on_child_entered_tree"]

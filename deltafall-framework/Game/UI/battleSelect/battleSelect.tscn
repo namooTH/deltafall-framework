@@ -1,37 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://m8186tpobhas"]
+[gd_scene load_steps=4 format=3 uid="uid://m8186tpobhas"]
 
 [ext_resource type="Script" path="res://Game/UI/battleSelect/battle_select.gd" id="1_sqles"]
 [ext_resource type="Script" path="res://Game/UI/battleSelect/button_plate.gd" id="2_fmqut"]
 [ext_resource type="PackedScene" uid="uid://wj4b1fhrjt8m" path="res://UI/scrolling/scroller.tscn" id="3_hw3og"]
-[ext_resource type="Texture2D" uid="uid://b7sv8v4viyeev" path="res://Art/UI_art/Icons/battle_icons.png" id="4_jd6u1"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3h103"]
-atlas = ExtResource("4_jd6u1")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hi5j4"]
-atlas = ExtResource("4_jd6u1")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ld7ej"]
-atlas = ExtResource("4_jd6u1")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jo5sa"]
-atlas = ExtResource("4_jd6u1")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vr7q1"]
-atlas = ExtResource("4_jd6u1")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l33i4"]
-atlas = ExtResource("4_jd6u1")
-region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_botb1"]
-atlas = ExtResource("4_jd6u1")
-region = Rect2(320, 0, 64, 64)
 
 [node name="BattleSelect" type="Control"]
 clip_contents = true
@@ -121,14 +92,16 @@ mode = "x"
 preventControlRotatedClipBug = false
 isCentered = true
 
-[node name="attackButton" type="Control" parent="mainBar/buttonsPlate/Scroller"]
+[node name="unrelated_buttonTemplate" type="Control" parent="mainBar/buttonsPlate/Scroller"]
+visible = false
+layout_mode = 3
 anchors_preset = 0
 offset_left = 0.00012207
 offset_top = 8.48528
 offset_right = 40.0001
 offset_bottom = 48.4853
 
-[node name="bg" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/attackButton"]
+[node name="bg" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/unrelated_buttonTemplate"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -143,7 +116,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="shadow" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/attackButton"]
+[node name="shadow" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/unrelated_buttonTemplate"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -158,7 +131,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.505882)
 
-[node name="iconShadow" type="TextureRect" parent="mainBar/buttonsPlate/Scroller/attackButton"]
+[node name="iconShadow" type="TextureRect" parent="mainBar/buttonsPlate/Scroller/unrelated_buttonTemplate"]
 clip_children = 1
 layout_mode = 1
 anchors_preset = 8
@@ -174,11 +147,10 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = -0.785398
 pivot_offset = Vector2(32, 32)
-texture = SubResource("AtlasTexture_3h103")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ColorRect" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/attackButton/iconShadow"]
+[node name="ColorRect" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/unrelated_buttonTemplate/iconShadow"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -190,7 +162,7 @@ offset_bottom = -2.00003
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="icon" type="TextureRect" parent="mainBar/buttonsPlate/Scroller/attackButton"]
+[node name="icon" type="TextureRect" parent="mainBar/buttonsPlate/Scroller/unrelated_buttonTemplate"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -205,271 +177,6 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = -0.785398
 pivot_offset = Vector2(32, 32)
-texture = SubResource("AtlasTexture_3h103")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="actButton" type="Control" parent="mainBar/buttonsPlate/Scroller"]
-anchors_preset = 0
-offset_left = 0.00012207
-offset_top = 8.48528
-offset_right = 40.0001
-offset_bottom = 48.4853
-
-[node name="bg" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/actButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -17.5
-offset_top = -17.5
-offset_right = 17.5
-offset_bottom = 17.5
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="shadow" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/actButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -16.0
-offset_right = 19.0
-offset_bottom = 19.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.505882)
-
-[node name="iconShadow" type="TextureRect" parent="mainBar/buttonsPlate/Scroller/actButton"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -30.5858
-offset_right = 32.0
-offset_bottom = 33.4142
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.785398
-pivot_offset = Vector2(32, 32)
-texture = SubResource("AtlasTexture_hi5j4")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="ColorRect" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/actButton/iconShadow"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -2.00004
-offset_top = -2.00003
-offset_right = -2.00004
-offset_bottom = -2.00003
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="icon" type="TextureRect" parent="mainBar/buttonsPlate/Scroller/actButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -30.5858
-offset_right = 32.0
-offset_bottom = 33.4142
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.785398
-pivot_offset = Vector2(32, 32)
-texture = SubResource("AtlasTexture_ld7ej")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="itemButton" type="Control" parent="mainBar/buttonsPlate/Scroller"]
-anchors_preset = 0
-offset_left = 0.00012207
-offset_top = 8.48528
-offset_right = 40.0001
-offset_bottom = 48.4853
-
-[node name="bg" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/itemButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -17.5
-offset_top = -17.5
-offset_right = 17.5
-offset_bottom = 17.5
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="shadow" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/itemButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -16.0
-offset_right = 19.0
-offset_bottom = 19.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.505882)
-
-[node name="iconShadow" type="TextureRect" parent="mainBar/buttonsPlate/Scroller/itemButton"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -30.5858
-offset_right = 32.0
-offset_bottom = 33.4142
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.785398
-pivot_offset = Vector2(32, 32)
-texture = SubResource("AtlasTexture_jo5sa")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="ColorRect" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/itemButton/iconShadow"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -2.00004
-offset_top = -2.00003
-offset_right = -2.00004
-offset_bottom = -2.00003
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="icon" type="TextureRect" parent="mainBar/buttonsPlate/Scroller/itemButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -30.5858
-offset_right = 32.0
-offset_bottom = 33.4142
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.785398
-pivot_offset = Vector2(32, 32)
-texture = SubResource("AtlasTexture_vr7q1")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="defendButton" type="Control" parent="mainBar/buttonsPlate/Scroller"]
-anchors_preset = 0
-offset_left = 0.00012207
-offset_top = 8.48528
-offset_right = 40.0001
-offset_bottom = 48.4853
-
-[node name="bg" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/defendButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -17.5
-offset_top = -17.5
-offset_right = 17.5
-offset_bottom = 17.5
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="shadow" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/defendButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -16.0
-offset_right = 19.0
-offset_bottom = 19.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.505882)
-
-[node name="iconShadow" type="TextureRect" parent="mainBar/buttonsPlate/Scroller/defendButton"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -30.5858
-offset_right = 32.0
-offset_bottom = 33.4142
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.785398
-pivot_offset = Vector2(32, 32)
-texture = SubResource("AtlasTexture_l33i4")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="ColorRect" type="ColorRect" parent="mainBar/buttonsPlate/Scroller/defendButton/iconShadow"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -2.00004
-offset_top = -2.00003
-offset_right = -2.00004
-offset_bottom = -2.00003
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="icon" type="TextureRect" parent="mainBar/buttonsPlate/Scroller/defendButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -30.5858
-offset_right = 32.0
-offset_bottom = 33.4142
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.785398
-pivot_offset = Vector2(32, 32)
-texture = SubResource("AtlasTexture_botb1")
 expand_mode = 1
 stretch_mode = 5
 
@@ -496,6 +203,13 @@ anchor_right = 0.498
 anchor_bottom = 1.0
 offset_left = 0.279968
 offset_right = 0.279968
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 316.0
+offset_right = 109.0
+offset_bottom = 356.0
 
 [connection signal="resized" from="." to="." method="_on_resized"]
 [connection signal="child_entered_tree" from="mainBar/buttonsPlate" to="mainBar/buttonsPlate" method="_on_child_entered_tree"]

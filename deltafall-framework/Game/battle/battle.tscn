@@ -32,7 +32,7 @@ offset_left = 0.0
 offset_top = 0.119999
 offset_right = 0.0
 offset_bottom = 21.12
-text = "this sucks"
+text = "what the fuck"
 
 [node name="BattleTp" parent="." instance=ExtResource("4_mwx24")]
 layout_mode = 1

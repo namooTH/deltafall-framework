@@ -1,9 +1,13 @@
 extends ColorRect
 
-var currentSelected: int = 0
+var currentSelectedIndex: int = 0:
+	set(value):
+		currentSelectedIndex = value
+		currentSelected = $Scroller.displayedNodes[value]
+var currentSelected: Node 
 
 func _unhandled_input(event):
 	if event.is_action_pressed("arrow_down"):
-		$Scroller.displayedNodes
+		currentSelectedIndex -= 1
 	if event.is_action_pressed("arrow_up"):
-		$Scroller.scrollUP(1)
+		currentSelectedIndex += 1

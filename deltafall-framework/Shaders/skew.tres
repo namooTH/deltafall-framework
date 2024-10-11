@@ -6,6 +6,6 @@ code = "shader_type canvas_item;
 uniform float strength = 0.2;
 
 void vertex() {
-	
+
 	VERTEX.y += -VERTEX.x * strength;
 }"

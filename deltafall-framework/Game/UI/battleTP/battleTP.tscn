@@ -37,20 +37,20 @@ border_width_bottom = 2
 
 [node name="BattleTp" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchor_left = 0.867
+anchor_right = 0.93
 anchor_bottom = 1.0
+offset_left = 0.119995
+offset_right = -0.200134
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="tpBar" type="Control" parent="."]
 layout_mode = 1
-anchor_left = 0.867
-anchor_right = 0.93
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 0.119995
-offset_right = -0.200073
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="stripe" type="ColorRect" parent="tpBar"]

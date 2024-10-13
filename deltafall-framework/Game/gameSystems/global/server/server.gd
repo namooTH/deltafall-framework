@@ -18,7 +18,6 @@ func _ready():
 		loadPlugins()
 		server.listen(4242)
 	
-var actions = ["defend", "act"]
 func _process(delta):
 	if server.is_connection_available(): peers.append(server.take_connection())
 	
@@ -46,11 +45,6 @@ func processRequest(data):
 					"battleSelection": dataToSend = ["attack", "act", "item", "defend"]
 	return var_to_bytes([dataType, data[1], dataToSend])
 		
-
-	#for peer in peers:
-	#	var packet = peer.get_packet()
-	#	if not packet: continue
-	#	
 var loadedPlugins = []
 func loadPlugins():
 	DirAccess.make_dir_absolute("user://plugins")

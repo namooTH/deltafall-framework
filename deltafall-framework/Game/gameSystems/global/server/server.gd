@@ -1,6 +1,7 @@
 extends Node
 
-var server := UDPServer.new()
+var server := TCPServer.new()
+var streamServer: StreamPeerTCP
 var peers = []
 
 enum DataType {
@@ -10,36 +11,54 @@ enum DataType {
 }
 	
 func _ready():
-	server.listen(4242)
+	var args = Array(OS.get_cmdline_args())
+	if args.has("-s"):
+		print("starting server...")
+		for node in get_tree().root.get_children(): if !node.name in ["GameSystem", "Server"]: node.queue_free() 
+		loadPlugins()
+		server.listen(4242)
 	
 var actions = ["defend", "act"]
 func _process(delta):
-	server.poll()
-	if server.is_connection_available():
-		var peer: PacketPeerUDP = server.take_connection()
-		var packet = peer.get_packet()
-		peer.put_packet(packet)
-		peers.append(peer)
-
+	if server.is_connection_available(): peers.append(server.take_connection())
+	
 	for peer in peers:
-		var packet = peer.get_packet()
-		if not packet: continue
+		peer.poll()
+		if !peer.get_status() == StreamPeerTCP.STATUS_CONNECTED:
+			peers.erase(peer)
+			continue
+		var availableBytes: int = peer.get_available_bytes()
+		if availableBytes > 0:
+			var data = peer.get_data(availableBytes)
+			if data[0] == OK:
+				data = bytes_to_var(data[1])
+				if data: peer.put_data(processRequest(data))
+					
+func processRequest(data):
+	var dataToSend
+	var dataType = int(data[0])
+	match dataType:
+		DataType.Texture: dataToSend=pluginsCallMethod("textureRequest", [self, data[1]])
+		DataType.GameData:
+			dataToSend=pluginsCallMethod(data[1], [self])
+			if !dataToSend:
+				match data[1]:
+					"battleSelection": dataToSend = ["attack", "act", "item", "defend"]
+	return var_to_bytes([dataType, data[1], dataToSend])
 		
-		var data = bytes_to_var(packet)
-		var dataToSend
-		if data:
-			var dataType = int(data[0])
-			match dataType:
-				DataType.Texture:
-					var image: Image = Image.new()
-					image.load("res://Art/my_pfp.png")
-					image.generate_mipmaps()
-					dataToSend = image.save_png_to_buffer()
-					#image.load_png_from_buffer(packet)
-					#$Node.texture = ImageTexture.create_from_image(image)
-				DataType.GameData:
-					# [datatype, area]
-					match data[1]:
-						"battleSelection":
-							dataToSend = actions
-			peer.put_packet(var_to_bytes([dataType, dataToSend]))
+
+	#for peer in peers:
+	#	var packet = peer.get_packet()
+	#	if not packet: continue
+	#	
+var loadedPlugins = []
+func loadPlugins():
+	DirAccess.make_dir_absolute("user://plugins")
+	var plugins = DirAccess.get_files_at("user://plugins")
+	for plugin in plugins:
+		loadedPlugins.append(load("user://plugins/" + plugin).new())
+func pluginsCallMethod(method: String, args: Array):
+	for plugin in loadedPlugins:
+		var returnedValue
+		if plugin.has_method(method): returnedValue = plugin.callv(method, args)
+		return returnedValue

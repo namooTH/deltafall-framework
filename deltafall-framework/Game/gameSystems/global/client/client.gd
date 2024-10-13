@@ -1,6 +1,6 @@
 extends Node
 
-var udp := PacketPeerUDP.new()
+var tcp := StreamPeerTCP.new()
 var connected = false
 
 enum DataType {
@@ -10,38 +10,70 @@ enum DataType {
 }
 
 func _ready():
-	udp.connect_to_host("127.0.0.1", 4242)
+	var args = Array(OS.get_cmdline_args())
+	if args.has("-s"): set_process(false)
+	tcp.connect_to_host("127.0.0.1", 4242)
+	#tcp.connect_to_host("147.185.221.23", 18085)
 
 func _process(delta):
-	if !connected: udp.put_packet(PackedInt32Array([0]).to_byte_array())
-	if udp.get_available_packet_count() > 0: recievedPacket(udp.get_packet())
-	
-signal recievedTexture
-signal recievedGameData
+	tcp.poll()
+	var availableBytes: int = tcp.get_available_bytes()
+	if availableBytes > 0:
+		var data = tcp.get_data(availableBytes)
+		if data[0] == OK: recievedData(data[1])
 
-func recievedPacket(packet):
+signal recievedTexture(textureName, texture)
+signal recievedGameData(dataName, data)
+func recievedData(packet):
 	connected = true
 	var data = bytes_to_var(packet)
+	#print(data)
 	if not data: return
 	match data[0]:
 		DataType.Texture:
-			var image: Image = Image.new()
-			image.load_png_from_buffer(data[1])
-			lastTexture = ImageTexture.create_from_image(image)
-			recievedTexture.emit()
-		DataType.GameData:
-			lastGameData = data[1]
-			recievedGameData.emit()
-
-var lastTexture	
+			var texture
+			if not data[2]: texture = getLocalTexture(data[1])
+			else:
+				var image: Image = Image.new()
+				image.load_png_from_buffer(data[2])
+				texture = ImageTexture.create_from_image(image)
+			recievedTexture.emit(data[1], texture)
+		DataType.GameData: recievedGameData.emit(data[1], data[2])
+			
 func requestTexture(textureName: String):
-	while !connected: await get_tree().process_frame
-	udp.put_packet(var_to_bytes([DataType.Texture, textureName]))
-	await recievedTexture
-	return lastTexture
-var lastGameData
+	while !tcp.get_status() == StreamPeerTCP.STATUS_CONNECTED: await get_tree().process_frame
+	tcp.put_data(var_to_bytes([DataType.Texture, textureName]))
+	var texture = await recievedTexture
+	while !texture[0] == textureName: texture = await recievedTexture
+	return texture[1]
 func requestGameData(data: String):
-	while !connected: await get_tree().process_frame
-	udp.put_packet(var_to_bytes([DataType.GameData, data]))
-	await recievedGameData
-	return lastGameData
+	while !tcp.get_status() == StreamPeerTCP.STATUS_CONNECTED: await get_tree().process_frame
+	tcp.put_data(var_to_bytes([DataType.GameData, data]))
+	var gamedata = await recievedGameData
+	print(gamedata)
+	while !gamedata[0] == data: gamedata = await recievedGameData
+	return gamedata[1]
+
+var battleIcons: CompressedTexture2D = preload("res://Art/UI_art/Icons/battle_icons.png")
+func getLocalTexture(textureName: String):
+	match textureName:
+		"attack":
+			var atlasTexture: AtlasTexture = AtlasTexture.new()
+			atlasTexture.atlas = battleIcons
+			atlasTexture.region = Rect2(0,0,64,64)
+			return atlasTexture
+		"act":
+			var atlasTexture: AtlasTexture = AtlasTexture.new()
+			atlasTexture.atlas = battleIcons
+			atlasTexture.region = Rect2(64,0,64,64)
+			return atlasTexture
+		"item":
+			var atlasTexture: AtlasTexture = AtlasTexture.new()
+			atlasTexture.atlas = battleIcons
+			atlasTexture.region = Rect2(192,0,64,64)
+			return atlasTexture
+		"defend":
+			var atlasTexture: AtlasTexture = AtlasTexture.new()
+			atlasTexture.atlas = battleIcons
+			atlasTexture.region = Rect2(320,0,64,64)
+			return atlasTexture

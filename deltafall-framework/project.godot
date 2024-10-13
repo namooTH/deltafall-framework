@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+GameSystem="*res://Game/gameSystems/global/gameSystem/gameSystem.tscn"
 Server="*res://Game/gameSystems/global/server/server.tscn"
 Client="*res://Game/gameSystems/global/client/client.tscn"
-GameSystem="*res://Game/gameSystems/global/gameSystem/gameSystem.tscn"
 
 [display]
 

@@ -27,7 +27,6 @@ signal recievedGameData(dataName, data)
 func recievedData(packet):
 	connected = true
 	var data = bytes_to_var(packet)
-	#print(data)
 	if not data: return
 	match data[0]:
 		DataType.Texture:
@@ -41,18 +40,19 @@ func recievedData(packet):
 		DataType.GameData: recievedGameData.emit(data[1], data[2])
 			
 func requestTexture(textureName: String):
-	while !tcp.get_status() == StreamPeerTCP.STATUS_CONNECTED: await get_tree().process_frame
-	tcp.put_data(var_to_bytes([DataType.Texture, textureName]))
+	request([DataType.Texture, textureName])
 	var texture = await recievedTexture
 	while !texture[0] == textureName: texture = await recievedTexture
 	return texture[1]
 func requestGameData(data: String):
-	while !tcp.get_status() == StreamPeerTCP.STATUS_CONNECTED: await get_tree().process_frame
-	tcp.put_data(var_to_bytes([DataType.GameData, data]))
+	request([DataType.GameData, data])
 	var gamedata = await recievedGameData
-	print(gamedata)
 	while !gamedata[0] == data: gamedata = await recievedGameData
 	return gamedata[1]
+
+func request(data: Array):
+	while !tcp.get_status() == StreamPeerTCP.STATUS_CONNECTED: await get_tree().process_frame
+	tcp.put_data(var_to_bytes(data))
 
 var battleIcons: CompressedTexture2D = preload("res://Art/UI_art/Icons/battle_icons.png")
 func getLocalTexture(textureName: String):
